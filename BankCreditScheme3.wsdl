@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by a.smotrova (quality-lab) -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://creditcalculator.pointschool.ru/calculator/importCreditParams?ws=1" xmlns:ns="http://creditcalculator.pointschool.ru/calculator/importCreditParams?ws=1" targetNamespace="http://creditcalculator.pointschool.ru/calculator/importCreditParams?ws=1">
+	<wsdl:import namespace="http://creditcalculator.pointschool.ru/calculator/importCreditParams?ws=1" location="BankCreditScheme.xsd"/>
+	<wsdl:types>
+		<xs:schema targetNamespace="http://creditcalculator.pointschool.ru/calculator/importCreditParams?ws=1" elementFormDefault="qualified"/>
+	</wsdl:types>
+	<wsdl:message name="CalcCreditRequest">
+		<wsdl:part name="ImportCreditParams" element="ns:importCreditParams"/>
+	</wsdl:message>
+	<wsdl:message name="CalcCreditResponse">
+		<wsdl:part name="ImportCreditResult" element="ns:importCreditResult"/>
+	</wsdl:message>
+	<wsdl:message name="RequestHeader">
+		<wsdl:part name="Header" element="tns:HeaderRequest"/>
+	</wsdl:message>
+	<wsdl:portType name="CreditType">
+		<wsdl:operation name="CreditCalculation">
+			<wsdl:input message="tns:CalcCreditRequest"/>
+			<wsdl:output message="tns:CalcCreditResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CreditBinding" type="tns:CreditType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="CreditCalculation">
+			<soap:operation soapAction="urn:CreditCalculation"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+				<soap:header message="tns:RequestHeader" part="Header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+				<soap:header message="tns:RequestHeader" part="Header" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CreditService">
+		<wsdl:port name="CreditPort" binding="tns:CreditBinding">
+			<soap:address location="http://creditcalculator.pointschool.ru/calculator/importCreditParams?ws=1"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

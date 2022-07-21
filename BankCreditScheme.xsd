@@ -1,0 +1,226 @@
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by a.smotrova (quality-lab) -->
+<xs:schema xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://creditcalculator.pointschool.ru/calculator/importCreditParams?ws=1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema" targetNamespace="http://creditcalculator.pointschool.ru/calculator/importCreditParams?ws=1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+	<xs:element name="importCreditParams">
+		<xs:annotation>
+			<xs:documentation>Импорт входных параметров для расчета кредита</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Credit">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Amount" type="tns:Amount">
+								<xs:annotation>
+									<xs:documentation>Сумма кредита</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Fee" type="tns:Fee">
+								<xs:annotation>
+									<xs:documentation>Первоначальный взнос</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Term" type="tns:Term">
+								<xs:annotation>
+									<xs:documentation>Период погашения в месяцах</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute ref="tns:client" use="optional" default="0"/>
+			<xs:attribute ref="tns:PreviousConviction" use="optional" default="0"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="Fee">
+		<xs:annotation>
+			<xs:documentation>Первоначальный взнос</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int"/>
+	</xs:simpleType>
+	<xs:simpleType name="Amount">
+		<xs:annotation>
+			<xs:documentation>Сумма кредита</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="100000"/>
+			<xs:maxInclusive value="500000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Term">
+		<xs:annotation>
+			<xs:documentation>Количество месяцев</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="12"/>
+			<xs:maxInclusive value="60"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="importCreditResult">
+		<xs:annotation>
+			<xs:documentation>Ответ на импорт с расчетом по параметрам</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0">
+				<xs:element name="ErrorType" type="tns:ErrorType"/>
+				<xs:element name="ImportResult" type="tns:ImportResult"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ErrorType">
+		<xs:annotation>
+			<xs:documentation>Ошибка</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ErrorCode" type="tns:ErrorCode">
+				<xs:annotation>
+					<xs:documentation>Код ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="tns:Description">
+				<xs:annotation>
+					<xs:documentation>Описание ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StackTrace" type="tns:StackTrace" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стектрейс, выбрасываемый в случае возникновения исключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImportResult">
+		<xs:annotation>
+			<xs:documentation>Результат расчета кредита</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Interest" type="tns:Interest">
+				<xs:annotation>
+					<xs:documentation>Процент переплаты по кредиту</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MontlyPayment" type="tns:MonthlyPayment">
+				<xs:annotation>
+					<xs:documentation>Ежемесячный платеж</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OverPayments" type="tns:OverPayments">
+				<xs:annotation>
+					<xs:documentation>Переплата, всего</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Total" type="tns:Total">
+				<xs:annotation>
+					<xs:documentation>Общая сумма выплаты с учетом процентов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Interest">
+		<xs:annotation>
+			<xs:documentation>Процент по кредиту</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MonthlyPayment">
+		<xs:annotation>
+			<xs:documentation>Ежемесячный платеж</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OverPayments">
+		<xs:annotation>
+			<xs:documentation>Переплата, всего</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Total">
+		<xs:annotation>
+			<xs:documentation>Сумма к оплате, всего</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ErrorCode">
+		<xs:annotation>
+			<xs:documentation>Код ошибки</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="Description">
+		<xs:annotation>
+			<xs:documentation>Описание ошибки</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="StackTrace">
+		<xs:annotation>
+			<xs:documentation>Стектрейс, выбрасываемый в случае возникновения исключения</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:attribute name="client" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Является клиентом?</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="PreviousConviction" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Был в заключении?</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:simpleType name="Date">
+		<xs:annotation>
+			<xs:documentation>Текущая дата</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="MessageGUID">
+		<xs:annotation>
+			<xs:documentation>Идентификатор сообщения</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="tns:GUIDType"/>
+	</xs:simpleType>
+	<xs:simpleType name="GUIDType">
+		<xs:annotation>
+			<xs:documentation>гуид</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="HeaderType">
+		<xs:annotation>
+			<xs:documentation>Заголовок</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Date" type="tns:Date">
+				<xs:annotation>
+					<xs:documentation>Текущая дата в формате ГГГГ-ММ-ДДTЧЧ:ММ:СС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MessageGUID" type="tns:GUIDType">
+				<xs:annotation>
+					<xs:documentation>Идентификатор запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="HeaderRequest" type="tns:HeaderType">
+		<xs:annotation>
+			<xs:documentation>Заголовок запроса</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>
