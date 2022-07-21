@@ -32,7 +32,26 @@ ${=new Date().format("yyyy-MM-dd'T'HH:mm:ss")} - Для даты в формат
 ```
 ${=java.util.UUID.randomUUID()} - Для уникального идентификатора сообщения 44708c78-2efe-11ea-978f-2e728ce88125
 ```
-
+### Запрос SOAP
+```
+<soapenv:Envelope>
+   <soapenv:Header>
+      <imp:HeaderRequest>
+         <imp:Date>${=new Date().format("yyyy-MM-dd'T'HH:mm:ssXXX")}</imp:Date>
+         <imp:MessageGUID>${=java.util.UUID.randomUUID()}</imp:MessageGUID>
+      </imp:HeaderRequest>
+   </soapenv:Header>
+   <soapenv:Body>
+      <imp:importCreditParams imp:client="1" imp:PreviousConviction="0">
+         <imp:Credit>
+            <imp:Amount>100000</imp:Amount>
+            <imp:Fee>40000</imp:Fee>
+            <imp:Term>20</imp:Term>
+         </imp:Credit>
+      </imp:importCreditParams>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
 ### Ответ SOAP
 #### Интерфейс возвращает ответ XML формате
 ```
@@ -51,3 +70,17 @@ ${=java.util.UUID.randomUUID()} - Для уникального идентифи
    </body>
 </Envelope>
 ```
+### Параметры ответа Soap
+
+| Параметр | Тип | Описание |
+|:--------:|:---:|:--------|
+|Date|Datetime|Дата и время в формате YYYY-MM-DD HH-MM-SS|
+|messageGUID|Int|Сгенерированный гуид для уникальной идентификации сообщения|
+|Interest|string|Процентная ставка|
+|MonthlyPayment|string|Ежемесячный платеж|
+|OverPayments|string|Переплата по кредиту|
+|Total|string|Выплаты за весь срок кредита|
+
+
+
+
