@@ -8,7 +8,7 @@
 ### Доступ к API предоставляется по следующему URL (Endpoint):
 http://creditcalculator.pointschool.ru/calculator/importCreditParams?ws=1
 
-### WSDL документ доступен по адресу
+### WSDL документ
 https://github.com/AlekseiMysenko/API-Soap/blob/main/BankCreditScheme3.wsdl
 
 ### XSD схема
