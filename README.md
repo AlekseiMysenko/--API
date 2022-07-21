@@ -12,7 +12,7 @@ http://creditcalculator.pointschool.ru/calculator/importCreditParams?ws=1
 http://creditcalculator.pointschool.ru/soap/BankCreditScheme3.wsdl
 
 ### XSD схема
-http://creditcalculator.pointschool.ru/soap/BankCreditScheme.xsd
+https://github.com/AlekseiMysenko/API-Soap/blob/main/BankCreditScheme.xsd
 
 ### Список используемых тегов в запросе:
 
