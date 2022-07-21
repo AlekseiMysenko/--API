@@ -9,7 +9,7 @@
 http://creditcalculator.pointschool.ru/calculator/importCreditParams?ws=1
 
 ### WSDL документ доступен по адресу
-http://creditcalculator.pointschool.ru/soap/BankCreditScheme3.wsdl
+https://github.com/AlekseiMysenko/API-Soap/blob/main/BankCreditScheme3.wsdl
 
 ### XSD схема
 https://github.com/AlekseiMysenko/API-Soap/blob/main/BankCreditScheme.xsd
