@@ -125,6 +125,7 @@ http://creditcalculator.pointschool.ru/users/api/bank?users=all
    "updated": "2018-08-24 07:20:17"
 }]
 ```
+
 ### Параметры ответа
 |Параметр|Тип|Описание|
 |:--------:|:---:|:--------|
@@ -132,6 +133,11 @@ http://creditcalculator.pointschool.ru/users/api/bank?users=all
 |passport|int|Серия и номер паспорта клиента|
 |created|datatime|Дата создания записи|
 |updated|datatime|Дата обновления записи|
+
+
+### Параметры запроса Rest для создания записи
+|Параметр|Тип|Описание|
+|:--------:|:---:|:--------|
 
 
 
