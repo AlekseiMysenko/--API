@@ -108,7 +108,13 @@ http://creditcalculator.pointschool.ru/users/api/bank?users=&series=&number=
 #### JSON-интерфейс (все записи):
 http://creditcalculator.pointschool.ru/users/api/bank?users=all
 
-### Параметры запроса Rest на чтение
+### 1. Параметры запроса Rest на чтение
+
+| Resource | /users/api/bank |
+|:---:|:--------|
+```
+Метод GET
+```
 |Параметр|Тип|Описание|
 |:--------:|:---:|:--------|
 |users|string|Поиск только по фамилии среди клиентов. Значение all для получения всех записей|
@@ -134,11 +140,58 @@ http://creditcalculator.pointschool.ru/users/api/bank?users=all
 |created|datatime|Дата создания записи|
 |updated|datatime|Дата обновления записи|
 
-https://github.com/AlekseiMysenko/API-Soap/blob/main/Rest1.jpg
 
-### Параметры запроса Rest для создания записи
+![Пример1](https://github.com/AlekseiMysenko/API-Soap/blob/main/Rest1.jpg)
+
+### 2. Параметры запроса Rest для создания записи
+
+|Resource|/users/api/bank/client/create|
+|:---:|:--------|
+```
+Метод GET
+```
+
 |Параметр|Тип|Описание|
 |:--------:|:---:|:--------|
+|firstname|string|Имя|
+|secondname|string|Фамилия|
+|middlename|string|Отчество|
+|series|int|серия паспорта клиента|
+|number|int|номер паспорта клиента|
+
+### 3. Параметры запроса Rest для обновления записи
+
+| Resource | /users/api/bank/client/update |
+|:---:|:--------|
+```
+Метод GET
+```
+|Параметр|Тип|Описание|
+|:--------:|:---:|:--------|
+|id|int|идентификатор записи|
+|firstname|string|Имя|
+|secondname|string|Фамилия|
+|middlename|string|Отчество|
+|series|int|серия паспорта клиента|
+|number|int|номер паспорта клиента|
+
+### 4. Параметры запроса Rest для удаления записи
+
+|Resource|/users/api/bank/client/delete|
+|:---:|:--------|
+```
+Метод GET
+```
+|Параметр|Тип|Описание|
+|:--------:|:---:|:--------|
+|id|int|идентификатор записи|
+
+
+
+
+
+
+
 
 
 
