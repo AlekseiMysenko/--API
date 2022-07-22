@@ -116,7 +116,7 @@ http://creditcalculator.pointschool.ru/users/api/bank?users=all
 |number|int|Поиск по номеру паспорта клиента|
 ##### Все параметры необязательны, но для поиска должен быть выбран как минимум один из них.
 
-### Овет REST
+### Ответ REST
 ```
 [{
    "name": "Ярмоненко Феофан Венедиктович",
@@ -125,3 +125,13 @@ http://creditcalculator.pointschool.ru/users/api/bank?users=all
    "updated": "2018-08-24 07:20:17"
 }]
 ```
+### Параметры ответа
+|Параметр|Тип|Описание|
+|:--------:|:---:|:--------|
+|name|string|Фамилия Имя Отчество клиента|
+|passport|int|Серия и номер паспорта клиента|
+|created|datatime|Дата создания записи|
+|updated|datatime|Дата обновления записи|
+
+
+
