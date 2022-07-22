@@ -134,6 +134,7 @@ http://creditcalculator.pointschool.ru/users/api/bank?users=all
 |created|datatime|Дата создания записи|
 |updated|datatime|Дата обновления записи|
 
+https://github.com/AlekseiMysenko/API-Soap/blob/main/Rest1.jpg
 
 ### Параметры запроса Rest для создания записи
 |Параметр|Тип|Описание|
